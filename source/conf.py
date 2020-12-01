@@ -86,5 +86,6 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 html_theme = 'msmb_theme'
+!pip install msmb_theme
 import msmb_theme
 html_theme_path = [msmb_theme.get_html_theme_path()]
