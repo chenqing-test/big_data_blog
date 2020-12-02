@@ -7,9 +7,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "YUN2YE's blog"
-copyright = '2020， YUN2YE'
-author = 'YUN2YE'
+project = "CQKJ BIG DATA's blog"
+copyright = '2020， ZFJ'
+author = 'ZFJ'
 
 # The short X.Y version
 version = ''
