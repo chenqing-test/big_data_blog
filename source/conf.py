@@ -7,9 +7,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Sphinx-Themes template'
-copyright = '2018, sphinx-themes.org'
-author = 'sphinx-themes.org'
+project = "YUN2YE's blog"
+copyright = '2020， YUN2YE'
+author = 'YUN2YE'
 
 # The short X.Y version
 version = ''
