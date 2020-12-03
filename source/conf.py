@@ -7,7 +7,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "CQKJ BIG DATA's blog"
+project = "CQKJ BIG DATA"
 copyright = '2020， ZFJ'
 author = 'ZFJ'
 

@@ -1,18 +1,15 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="zh-CN" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SWAT模型 &mdash; YUN2YE&#39;s blog 1 文档</title>
+  <title>SWAT模型 &mdash; CQKJ BIG DATA 1 文档</title>
   
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
   
@@ -20,9 +17,7 @@
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -35,9 +30,13 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="机器学习" href="../meachine_learning/index.html" />
+    <link rel="next" title="QGIS构建SWAT模型简述" href="QGIS%E5%BB%BA%E6%A8%A1%E6%B5%81%E7%A8%8B.html" />
     <link rel="prev" title="水文模型" href="index.html" /> 
 </head>
 
@@ -52,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> YUN2YE's blog
+            <a href="../index.html" class="icon icon-home"> CQKJ BIG DATA
           
 
           
@@ -75,7 +74,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,18 +81,30 @@
               
             
             
-              <ul class="current">
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">水文模型</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SWAT模型</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SWAT模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">模型简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">模型基本原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">SWAT主要水循环模拟方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1. SWAT的大气水过程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QGIS%E5%BB%BA%E6%A8%A1%E6%B5%81%E7%A8%8B.html">QSWAT建模介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QSWAT%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0.html">QSWAT操作流程</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../meachine_learning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reStructuredText/index.html">RST语法相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blog_build/index.html">搭建博客相关</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -104,7 +114,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">YUN2YE's blog</a>
+          <a href="../index.html">CQKJ BIG DATA</a>
         
       </nav>
 
@@ -133,7 +143,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
           <li><a href="index.html">水文模型</a> &raquo;</li>
         
@@ -158,6 +168,118 @@
             
   <div class="section" id="swat">
 <h1>SWAT模型<a class="headerlink" href="#swat" title="永久链接至标题">¶</a></h1>
+<p>SWAT是一种分布式水文模型。</p>
+<p>从以下几个方面入手：</p>
+<ol class="arabic simple">
+<li><p>模型简介</p></li>
+<li><p>模型基本原理</p></li>
+<li><p>待补充</p></li>
+<li></li>
+</ol>
+<div class="section" id="id1">
+<h2>模型简介<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li><p>应用方向：</p></li>
+</ol>
+<p>评价人类活动对流域的水循环、泥沙、农业污染物质迁移的长期影响和作用</p>
+<ol class="arabic simple" start="2">
+<li><p>特点：</p></li>
+<li><p>属于物理-概念结合的模型，育有很强的物理基础，能够考虑天气、土壤性质、地形、植被、人类土地管理的综合作用</p></li>
+<li><p>适合于长时间尺度的水文循环和物质循环研究</p></li>
+<li><p>适合宏观尺度的模拟</p></li>
+<li><p>能模拟水循环过程，能以水循环为载体研究水土流失、营养物质输移、农药、病原菌等物质循环过程</p></li>
+<li><p><sub>能够灵活处理资料缺失问题</sub>。具有强大的模型数据库，除地形和土地利用等少量基本数据资料外，很多参数，如作物相关参数、土壤参数等可直接选用备用数据</p></li>
+<li><p>分布式计算，先将流域分为子流域，子流域内继续细分水文响应单元，单独研究每个水文响应单元的内部循环，并在子流域进行累计汇总，再通过河网对子流域进行有机连接以模拟地表汇流，计算效率很高</p></li>
+<li></li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h2>模型基本原理<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ol class="arabic">
+<li><p>SWAT流域模拟结构</p></li>
+<li><img alt="../_images/image-20200911120145551.png" src="../_images/image-20200911120145551.png" />
+</li>
+<li><p>模拟结构的概念性</p></li>
+</ol>
+<p>全流域/区域-&gt;子流域-&gt;水文响应单元，松散耦合</p>
+<p>物理模型：网格、地形单元等，强耦合</p>
+<ol class="arabic simple" start="3">
+<li><p>模拟方法的概念性</p></li>
+</ol>
+<p>降雨/灌溉入渗：SCS、Green-Ampt</p>
+<p>土壤水模拟：概念性的分层下渗模型，田间持水度</p>
+<p>地下水：均衡模式，不考虑侧向径流</p>
+<p>地表水：河槽蓄量法、马斯京根法</p>
+<p>物理模型：Richard方程、运动波/动力波方程、地下水动力学方程</p>
+<ol class="arabic simple" start="4">
+<li><p>物理性：</p></li>
+</ol>
+<p>水循环各过程刻画比较全面和贴合实际，几乎所有的实际物理水文模型均有模型计算过程对应</p>
+<ol class="arabic" start="5">
+<li><p>水文响应单元</p></li>
+<li><p>代表了流域的下垫面</p></li>
+<li><p>是集合体的概念</p>
+<p>土地利用（林地、草地、麦田）+土壤类型（红壤土、灰潮土）+管理方式（雨养、灌2水、灌3水）</p>
+</li>
+<li><p>单个水文响应单元用一维模拟土壤水和作物过程</p></li>
+<li><p>水文响应单元相互独立，无空间联系，不发生水分交换</p></li>
+<li><p>两阶段的水文过程模拟</p></li>
+<li><p>第一阶段</p>
+<p>陆面过程，控制每个子流域水、泥沙、营养物、微生物等的内部循环转化过程，并产出到主河道</p>
+</li>
+<li><p>第二阶段</p>
+<p>河道演进过程，模拟水、泥沙、营养物等通过河道演进知道流域出口</p>
+</li>
+<li><p>SWAT水循环模拟路径</p></li>
+<li><img alt="../_images/image-20200911120246521.png" src="../_images/image-20200911120246521.png" />
+</li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h2>SWAT主要水循环模拟方法<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<ol class="arabic simple">
+<li><p>水循环过程原理</p></li>
+<li><p>大气水过程</p></li>
+<li><p>土壤水过程</p></li>
+<li><p>地下水过程</p></li>
+<li><p>地表水过程</p></li>
+<li><p>植物生长过程</p></li>
+<li><p>土地和水分管理</p></li>
+<li><p>物质循环过程原理</p></li>
+<li><p>泥沙过程</p></li>
+<li><p>营养物迁移过程</p></li>
+<li><p>农药迁移过程</p></li>
+<li><p>重金属迁移</p></li>
+<li><p>病原菌迁移</p></li>
+</ol>
+<div class="section" id="id4">
+<h3>1. SWAT的大气水过程<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>主过程</p></li>
+<li><p>此处应有图</p></li>
+<li><p>降雨降雪的分离，取决于当日平均气温</p></li>
+<li><p>T&gt;=T<sub>base</sub>——降雨</p></li>
+<li><p>T&lt;T<sub>base</sub>——降雪</p></li>
+<li><p>冠层截留过程</p></li>
+</ol>
+<p>蒸发的计算循序</p>
+<img alt="../_images/image-20200911120121076.png" src="../_images/image-20200911120121076.png" />
+<ol class="arabic">
+<li><p>计算截留能力</p>
+<img alt="../_images/image-20200911115317726.png" src="../_images/image-20200911115317726.png" />
+</li>
+<li><p>根据截留能力计算冠层截留量和地面净雨</p>
+<img alt="../_images/image-20200911115330950.png" src="../_images/image-20200911115330950.png" />
+</li>
+<li><p>计算冠层截留蒸发</p>
+<img alt="../_images/image-20200911133037697.png" src="../_images/image-20200911133037697.png" />
+<ol class="arabic simple" start="2">
+<li></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
 </div>
 
 
@@ -168,7 +290,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../meachine_learning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="QGIS%E5%BB%BA%E6%A8%A1%E6%B5%81%E7%A8%8B.html" class="btn btn-neutral float-right" title="QGIS构建SWAT模型简述" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="水文模型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -180,19 +302,11 @@
 
   <div role="contentinfo">
     <p>
-        
-        &copy; 版权所有 2020， YUN2YE
+        &copy; Copyright 2020， ZFJ
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -203,6 +317,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

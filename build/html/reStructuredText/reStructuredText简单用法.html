@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>reStructuredText部分语法 &mdash; CQKJ BIG DATA 1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="目录" href="../blog_build/index.html" />
+    <link rel="prev" title="reStructuredText相关内容" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CQKJ BIG DATA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hydrological_model/index.html">水文模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../meachine_learning/index.html">机器学习</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">RST语法相关</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">reStructuredText语法简单整理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">文字块/文本框</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">标题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">这是二级标题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">这是三级标题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">再来一个二级标题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">这也是一个三级标题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">图片</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../blog_build/index.html">搭建博客相关</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CQKJ BIG DATA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">reStructuredText相关内容</a> &raquo;</li>
+        
+      <li>reStructuredText部分语法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reStructuredText/reStructuredText简单用法.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="restructuredtext">
+<h1>reStructuredText部分语法<a class="headerlink" href="#restructuredtext" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>文字块/文本框<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>用“::”两个英文冒号加一个空行表示接下来是一个文本框。文本框的内容需要缩进。文本框止于一个空行。</p>
+<dl>
+<dt>展现形式：</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">这是一个文本框</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>-—————————————语法如下文本框内的内容所示—————————————-</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">::</span>
+
+        <span class="n">这是一个文本框</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>-——————————————–这是丑陋的分割线———————————————</p>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>标题<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>用“#”、“=”、“-”等符号在标题下方输入一行，代表标题分级。实际上用 <code class="docutils literal notranslate"><span class="pre">#=+-_^*:</span></code> 等符号都可以。</p>
+<dl>
+<dt>展现形式：</dt><dd><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>这是二级标题<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3>这是三级标题<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>再来一个二级标题<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h3>这也是一个三级标题<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id7">
+<h4>这是四级标题<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<blockquote>
+<div><p>-—————————————语法如下文本框内的内容所示—————————————-</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">这是二级标题</span>
+<span class="o">============</span>
+
+<span class="n">这是三级标题</span>
+<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="n">再来一个二级标题</span>
+<span class="o">=======================</span>
+
+<span class="n">这个四级标题显示不出来</span>
+<span class="p">:::::::::::::::::::::::::::::::::::::</span>
+
+<span class="n">这也是一个三级标题</span>
+<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+
+<span class="n">这是四级标题</span>
+<span class="p">:::::::::::::::::::::::::::::::::::::</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>-——————————————–这是丑陋的分割线———————————————</p>
+<ul class="simple">
+<li><p>此处如果使用一级标题“#”的话，会导致右边侧边栏目录混乱，所以示范从二级目录开始</p></li>
+<li><p>原则上这些符号的长度至少要跟标题文字一样长，也可以超长，也可以不整齐。</p></li>
+<li><p>标题符号自身规定没有一二级的顺序，一二三四级标题的级别取决于标题们的第一次出场顺序。</p></li>
+<li><p>当出场顺序已经确定之后，如一二三级标题确定后，在二级标题后面直接跟上四级标题会导致四级标题无效，因为中间缺失了三级标题。</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>图片<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>直接上图：</p>
+<dl>
+<dt>展现形式：</dt><dd><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</dd>
+</dl>
+<img alt="../_images/示例图片.png" src="../_images/示例图片.png" />
+<p>-—————————————语法如下文本框内的内容所示—————————————-</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="o">./</span><span class="n">images</span><span class="o">/</span><span class="n">reStructuredText</span><span class="o">/</span><span class="n">示例图片</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>-——————————————–这是丑陋的分割线———————————————</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../blog_build/index.html" class="btn btn-neutral float-right" title="目录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="reStructuredText相关内容" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020， ZFJ
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QGIS构建SWAT模型简述 &mdash; CQKJ BIG DATA 1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="QSWAT插件操作流程一览" href="QSWAT%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0.html" />
+    <link rel="prev" title="SWAT模型" href="SWAT_introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CQKJ BIG DATA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">水文模型</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SWAT_introduction.html">SWAT模型</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QSWAT建模介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">前言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dem">DEM高程数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">划分子流域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hrus">创建HRUs，水文响应单元</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">附录</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utmwgs84">UTM坐标系与WGS84坐标系</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#d8">D8算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">分水岭</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">水文响应单元</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QSWAT%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0.html">QSWAT操作流程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../meachine_learning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reStructuredText/index.html">RST语法相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blog_build/index.html">搭建博客相关</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CQKJ BIG DATA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">水文模型</a> &raquo;</li>
+        
+      <li>QGIS构建SWAT模型简述</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/hydrological_model/QGIS建模流程.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qgisswat">
+<h1>QGIS构建SWAT模型简述<a class="headerlink" href="#qgisswat" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>前言<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>这是近期花时间最多的一项工作，不过大部分时间是在挂机，运行QGIS的QSWAT插件程序。因为黄河流域是个很大的流域，分辨率要求又比较高，所以程序跑起来每一步都非常慢。而一旦某一步出了错，倒退一步都会非常耗时，甚至有时候就得推倒重来。</p>
+<p>这里可以给大家介绍一下QSWAT程序的建模流程。</p>
+</div>
+<div class="section" id="id2">
+<h2>安装<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>这个可以略</p>
+</div></blockquote>
+</div>
+<div class="section" id="dem">
+<h2>DEM高程数据<a class="headerlink" href="#dem" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>首先要处理一下黄河流域的DEM高程数据。
+DEM高程数据代表了黄河流域这片土地的每个角落的“海拔高度”。SWAT程序可以通过对这些高度的计算，统计出一条条河流通道，让流域中的流动水来到最终汇流而成的出水口。
+我们可以下载得到中国的DEM30m数据。全中国太大了，所以已经有人把整个文件剪裁成了一个个小块。然后我们取包含了黄河区域的一小块，当然实际上也很大。
+然后再做一下剪裁，裁成黄河的模样。这几步不是必要的，但是如果不做的话，区域太宽泛，会浪费很多很多的算力在无关区域上，也会耗费很多无意义的时间。
+然后需要做个投影。因为下载的地图是以经纬度为坐标的，而SWAT需要的是UTM坐标系。转换投影之后，高程数据就处理好了。后续要用到的soil和landuse地图也要经过相同的处理。</p>
+<p><a class="reference internal" href="#utmwgs84">UTM坐标系与WGS84坐标系</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>划分子流域<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><ol class="arabic">
+<li><p>然后要划分streams，河流通道。</p>
+<p>这一步就相当于前面提到的，根据每片土地的海拔，计算出整个流域的河流通道。这部分非常耗时，采用的是D8算法。这一步很关键，这里创建的河流通道与现实环境的相符程度，决定了整个模型的质量。这里我们可以直接拖进来一个google地图，跟现实的河流走向比较一下。</p>
+<p><a class="reference internal" href="#d8">D8算法</a></p>
+</li>
+<li><p>然后是创建出水口outlet。</p>
+<p>整个模型需要一个出水口。我们这次建模的主要目的，就是计算不同天气条件下，出水口处的出流量。当然模型还有其它的用处。一般来说，在目的地的河流通道附近画一个出水口就可以了，画的稍微偏一些也没关系。因为是要通过软件投影到精确的河流通道中的。不过这次建模花费了大量的时间却是就因为这个出水口。</p>
+</li>
+<li><p>出水口选取好了以后，要创建watershed，分水岭。</p>
+<p>分水岭是两个相邻的集水区的公共出水口，也是通过DEM地图、流向栅格来绘制的。通过创建分水岭，整个黄河流域会被划分成一片片小的子流域。这一块也会耗费非常多时间。</p>
+<p><a class="reference internal" href="#id5">分水岭</a></p>
+</li>
+<li><p>创建landscape，景观单元。</p>
+<p>地图上除了河流通道，还会有平坡、山丘、高地和谷底。这些元素也会在降雨降雪、蒸散发、地表径流等等过程中产生互动的影响。所以，也要通过EDM地图，将这部分景观绘制出来。这部分比前两步用时少些，但只是相对的。</p>
+</li>
+<li><p>添加Lake，湖泊。</p>
+<p>前面那步划分河流通道的时候并没有刻意区分盆地与湖泊，但是盆地与湖泊的区别却是这个模型不可忽视的。而最近令我头疼的问题，恰恰出在这个湖泊的出水口上面。我重绘了很多次模型，在这个湖泊的湖里湖外加了很多次不同的outlet出水口，但每一次都会提示相同的错误<code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">find</span> <span class="pre">outlet</span> <span class="pre">for</span> <span class="pre">lake</span> <span class="pre">1</span></code>。在写这篇内容的时候，[STRIKEOUT:我在卢的建议下把outlet改成了reservoir。希望明天能见到好的结果。]又一次失败了。</p>
+</li>
+<li><p>[OK]。</p>
+<p>唔，这一步也会花费很多时间，会在这一步完成添加湖泊的操作。它意味着我们结束了<code class="docutils literal notranslate"><span class="pre">[Delineate</span> <span class="pre">Watershed]</span></code>这部分内容。</p>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="hrus">
+<h2>创建HRUs，水文响应单元<a class="headerlink" href="#hrus" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>HRUs是SWAT模型模拟的基本单元。划分HRUs是为了解决子流域当中，不同的土地类型和土壤类型差异导致同一流域的下垫面错综复杂所产生的问题。其主要思想是利用聚类等方法，将子流域拆分成一个个小的水文响应单元，使得每个单元仅包含单一的土地利用类型和土壤类型。</p>
+<p><a class="reference internal" href="#id6">水文响应单元</a></p>
+<ol class="arabic">
+<li><p>处理landuse，土地利用类型地图和soil，土壤类型地图。</p>
+<p>操作方法同DEM高程地图，剪裁与投影。这两个地图会给黄河流域整个地图的每块土地注明土地类型和土壤类型（通常用ID123456表示，同时需要附加一个表格说明每个ID数字对应什么类型），这也是水文模型当中重要的一部分。</p>
+</li>
+<li><p>此处略过一些可选参数不讲，如单元景观选取、HRU阈值划分、短小河流通道合并等</p></li>
+<li><p>读取网格数据。</p>
+<p>这一步就是为创建HRUs做准备，从土地利用地图、土壤类型地图和景观单元中读取数据。完成这一步后，会产生“潜在HRUs”地图和完整的景观单元地图。</p>
+</li>
+<li><p>然后又是一些细节可选的参数改动，此处不表</p></li>
+<li><p>创建HRUs。</p>
+<p>到这里，水文响应单元就创建完了。关于SWAT的黄河流域模型创建也基本完成了。</p>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h2>附录<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="utmwgs84">
+<h3>UTM坐标系与WGS84坐标系<a class="headerlink" href="#utmwgs84" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>这里是UTM坐标系与WGS84坐标系的介绍</p>
+</div></blockquote>
+</div>
+<div class="section" id="d8">
+<h3>D8算法<a class="headerlink" href="#d8" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>假设单个栅格中的水流只能流入与之相邻的8个栅格中。它用最陡坡度法来确定水流的方向，即在3×3 的DEM
+栅格上，计算中心栅格与各相邻栅格间的距离权落差（即栅格中心点落差除以栅格中心点之间的距离），取距离权落差最大的栅格为中心栅格的流出栅格。</p>
+<p>所谓最陡坡度法的原理是假设地表不透水，降雨均匀．那么流域单元上的水流总是流向最低的地方。
+“窗口滑动”指以计算单元为中心，组合其相邻的若干个单元形成一个“窗口”，以“窗口”为计算基本元素，推及整个DEM，求取最终结果。</p>
+<blockquote>
+<div><p>返回 <a class="reference internal" href="#id3">划分子流域</a></p>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h3>分水岭<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>这里是分水岭的介绍</p>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h3>水文响应单元<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>这里是水文响应单元的介绍</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="QSWAT%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0.html" class="btn btn-neutral float-right" title="QSWAT插件操作流程一览" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SWAT_introduction.html" class="btn btn-neutral float-left" title="SWAT模型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020， ZFJ
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QSWAT插件操作流程一览 &mdash; CQKJ BIG DATA 1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="机器学习" href="../meachine_learning/index.html" />
+    <link rel="prev" title="QGIS构建SWAT模型简述" href="QGIS%E5%BB%BA%E6%A8%A1%E6%B5%81%E7%A8%8B.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CQKJ BIG DATA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">水文模型</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SWAT_introduction.html">SWAT模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QGIS%E5%BB%BA%E6%A8%A1%E6%B5%81%E7%A8%8B.html">QSWAT建模介绍</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QSWAT操作流程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dem">对DEM文件进行处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#landusesoil">landuse和soil文件处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">QSWAT操作步骤</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">创建项目</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delineate-watershed">[Delineate Watershed]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-hrus">[Create HRUs]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-inputs-and-run-swat">[Edit Inputs and Run SWAT]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visualise">[Visualise]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../meachine_learning/index.html">机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reStructuredText/index.html">RST语法相关</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../blog_build/index.html">搭建博客相关</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CQKJ BIG DATA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">水文模型</a> &raquo;</li>
+        
+      <li>QSWAT插件操作流程一览</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/hydrological_model/QSWAT流程简述.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qswat">
+<h1>QSWAT插件操作流程一览<a class="headerlink" href="#qswat" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>略</p>
+</div>
+<div class="section" id="dem">
+<h2>对DEM文件进行处理<a class="headerlink" href="#dem" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>获取DEM数据文件</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">147</span><span class="o">-&gt;</span>
+        <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">DEM</span><span class="o">/-&gt;</span>
+                <span class="n">china</span><span class="o">.</span><span class="n">tif</span>
+</pre></div>
+</div>
+<p>或</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>147-&gt;
+        ​ /data/DEM/dem/-&gt;
+                *各省.tif
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>导入图层</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Layer-&gt;
+         Add Layer-&gt;
+                Add Raster Layer
+                        [...]
+                                打开所在省/国/洲的tif文件（DEM数据文件）
+                                        [Add]
+                                                [Close]
+</pre></div>
+</div>
+<img alt="../_images/image-20200917141956634.png" src="../_images/image-20200917141956634.png" />
+<ul class="simple">
+<li><p>剪裁处理</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Raster</span><span class="o">-&gt;</span>
+        <span class="n">Extraction</span><span class="o">-&gt;</span>
+                <span class="n">Clip</span> <span class="n">raster</span> <span class="n">by</span> <span class="n">extent</span>
+                        <span class="n">在Clipping</span> <span class="n">extent栏下填入比目标流域稍大一些的经纬度区域范围</span>
+                                <span class="p">[</span><span class="n">run</span><span class="p">]</span>
+                                        <span class="p">[</span><span class="n">close</span><span class="p">]</span>
+</pre></div>
+</div>
+<img alt="../_images/image-20200917142220903.png" src="../_images/image-20200917142220903.png" />
+<img alt="../_images/image-20200917142441281.png" src="../_images/image-20200917142441281.png" />
+<ul class="simple">
+<li><p>得到需要的区域后删去原图层</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>工具栏空白处右键，给Layer Panel栏打勾
+        左侧出现图层工具栏
+                右键删去原图层，保留裁剪后的图层
+</pre></div>
+</div>
+<img alt="../_images/image-20200917142921700.png" src="../_images/image-20200917142921700.png" />
+<ul class="simple">
+<li><p>投影处理</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Raster-&gt;
+        Projections-&gt;
+                Warp(reproject)
+                        在Target CRS栏右方点击小按钮，进入Selector
+                                取消勾选No projection
+                                        在Filter搜索栏输入关键词，查找目标投影格式（此处需自行查找相关经纬度区域对应的格式，可百度搜索UTM zone）
+                                                 [ok]
+                                                         在Reprojected栏输入保存目录和文件名([...]-&gt;save to file)
+                                                                 [run]
+                                                                         [close]
+</pre></div>
+</div>
+<img alt="../_images/image-20200917141931438.png" src="../_images/image-20200917141931438.png" />
+<img alt="../_images/image-20200917143131585.png" src="../_images/image-20200917143131585.png" />
+<img alt="../_images/image-20200917143639297.png" src="../_images/image-20200917143639297.png" />
+</div>
+<div class="section" id="landusesoil">
+<h2>landuse和soil文件处理<a class="headerlink" href="#landusesoil" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>获取数据</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">swat</span><span class="o">.</span><span class="n">tamu</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">data</span><span class="o">/</span>
+
+<span class="n">landuse</span> <span class="nb">map</span> <span class="o">&amp;</span> <span class="n">soil</span> <span class="nb">map</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>导入图层</p></li>
+<li><p>投影处理（同DEM）</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>QSWAT操作步骤<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>勾选QSWAT插件</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Plugins-&gt;
+     Manage and Install Plugins
+         搜索栏输入QSWAT
+             勾选QSWATPlus3_64
+                 [close]
+                     查看是否出现“S+”图标
+</pre></div>
+</div>
+<img alt="../_images/image-20200917145342683.png" src="../_images/image-20200917145342683.png" />
+<img alt="../_images/image-20200917145449859.png" src="../_images/image-20200917145449859.png" />
+<img alt="../_images/image-20200917155526253.png" src="../_images/image-20200917155526253.png" />
+<ul class="simple">
+<li><p>打开S+图标</p></li>
+</ul>
+<div class="section" id="id3">
+<h3>创建项目<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">New</span> <span class="n">Project</span><span class="p">]</span>
+        <span class="n">选择目标项目文件夹的父目录</span>
+                <span class="p">[</span><span class="n">选择文件夹</span><span class="p">]</span>
+                        <span class="n">输入项目名</span>
+                                <span class="p">[</span><span class="n">OK</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delineate-watershed">
+<h3>[Delineate Watershed]<a class="headerlink" href="#delineate-watershed" title="永久链接至标题">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">项目路径不得出现中文</span><span class="o">*</span>
+</pre></div>
+</div>
+<ul>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Delineate</span> <span class="n">Watershed</span><span class="p">]</span>
+        <span class="n">Select</span> <span class="n">DEM</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+                 <span class="n">选取上面剪裁投影处理过的DEM数据tif文件</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Create streams]（可以调整Channel/Stream threshold和Cells，或者直接保持默认值） 等待一段时间，地图上会出现流域河流分布线
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Draw inlets/outlets] 在出水口打上小三角形（必须打在河流线上，可以隐藏背景图，然后放大河流再标记）(七一水库625045，3189516)
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Select</span> <span class="n">inlets</span><span class="o">/</span><span class="n">oulets</span><span class="p">]</span> <span class="n">选中刚才的标记小三角形并</span><span class="p">[</span><span class="n">save</span><span class="p">]</span>
+        <span class="n">右侧会出现</span><span class="s2">&quot;1 selected&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[create watershed] 等待一段时间，会自动剪裁掉无用的河流支流，并形成一个红色包围圈
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>create landscape [Create]
+        选一种landscape进行创建，第三种“Branch length”最慢，可以选第一种“Buffer channels”
+                [Create]
+                        等待一段时间，[Done]
+</pre></div>
+</div>
+</li>
+</ul>
+<img alt="../_images/image-20200917151146108.png" src="../_images/image-20200917151146108.png" />
+<ul>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">OK</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="create-hrus">
+<h3>[Create HRUs]<a class="headerlink" href="#create-hrus" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Create</span> <span class="n">HRUs</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Select</span> <span class="n">landuse</span> <span class="nb">map</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="n">选取上面投影处理过的landues数据tif文件</span>
+        <span class="n">Landuse</span> <span class="n">table</span> <span class="n">改选成</span><span class="p">[</span><span class="n">global_landuses</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Select</span> <span class="n">soil</span> <span class="nb">map</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="n">选取上面投影处理过的soil数据tif文件</span>
+        <span class="n">Soil</span> <span class="n">table</span> <span class="n">改选成</span><span class="p">[</span><span class="n">global_soils</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usersoil</span> <span class="n">table</span> <span class="n">改选成</span><span class="p">[</span><span class="n">global_usersoil</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Select</span> <span class="n">floodplain</span> <span class="nb">map</span> <span class="p">(</span><span class="n">optional</span><span class="p">)]</span>  <span class="n">改选成</span>     <span class="p">[</span><span class="n">bufferflood10</span><span class="o">.</span><span class="n">tif</span><span class="p">]</span>
+    <span class="p">(</span><span class="n">取决于Delineate</span> <span class="n">Watershed中create的landscape</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>勾选“Generate FullHRUs shapefile”
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span> <span class="n">slope</span> <span class="n">bands</span>
+    <span class="mi">10</span> <span class="p">[</span><span class="n">Insert</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Short</span> <span class="n">channel</span> <span class="n">merge</span>
+    <span class="mi">2</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Read</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Create</span> <span class="n">HRUs</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="edit-inputs-and-run-swat">
+<h3>[Edit Inputs and Run SWAT]<a class="headerlink" href="#edit-inputs-and-run-swat" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Edit</span> <span class="n">Inputs</span> <span class="ow">and</span> <span class="n">Run</span> <span class="n">SWAT</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>左侧五个图标之一：[Project setup]</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Start</span> <span class="n">editing</span> <span class="n">SWAT</span><span class="o">+</span> <span class="n">inputs</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>左侧五个图标之二：[Edit SWAT+ inputs]</p></li>
+<li><p>下载天气数据&lt;<a class="reference external" href="https://bitbucket.org/swatplus/swatplus.editor/downloads/swatplus_wgn.sqlite">https://bitbucket.org/swatplus/swatplus.editor/downloads/swatplus_wgn.sqlite</a>&gt;_</p></li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Weather</span> <span class="n">Generator</span>
+    <span class="p">[</span><span class="n">Import</span> <span class="n">Data</span><span class="p">]</span>
+        <span class="n">Database</span> <span class="n">file</span> <span class="p">[</span><span class="n">Browse</span><span class="p">]</span>
+            <span class="n">选择上述下载的天气数据</span>
+                <span class="n">Table</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">database</span>
+                    <span class="p">[</span><span class="n">wgn_cfsr_world</span><span class="p">]</span>
+                        <span class="p">[</span><span class="n">Start</span> <span class="n">Import</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Time</span>
+    <span class="n">按需选择</span>
+        <span class="p">[</span><span class="n">Save</span> <span class="n">Changes</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Print</span>
+    <span class="n">勾选</span>  <span class="n">Object</span><span class="p">:[</span><span class="n">channel_sd</span><span class="p">]</span><span class="o">-</span><span class="p">[</span><span class="n">Daily</span><span class="p">]</span>
+        <span class="p">[</span><span class="n">Save</span> <span class="n">Changes</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>左侧五个图标之三：[Write input files]</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Save</span> <span class="o">&amp;</span> <span class="n">Write</span> <span class="n">Files</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>左侧五个图标之四：[Run the model]</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Run</span> <span class="n">SWAT</span><span class="o">+</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>左侧五个图标之五：[Analyze model output]</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Save</span> <span class="o">&amp;</span> <span class="n">Write</span> <span class="n">Files</span><span class="p">]</span>
+    <span class="p">[</span><span class="n">Exit</span> <span class="n">SWAT</span><span class="o">+</span> <span class="n">Editor</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="visualise">
+<h3>[Visualise]<a class="headerlink" href="#visualise" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Visualise</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Choose</span> <span class="n">SWAT</span><span class="o">+</span> <span class="n">output</span> <span class="n">table</span>
+    <span class="p">[</span><span class="n">channel_sd_day</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Choose</span> <span class="n">period</span>
+    <span class="n">选择需要的时间段</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">选择</span><span class="p">[</span><span class="n">plot</span><span class="p">]</span><span class="n">栏</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Unit</span>
+    <span class="n">选择需要的通道</span>
+        <span class="n">Variable</span>
+            <span class="n">选择需要的变量</span><span class="p">[</span><span class="n">flo_out</span><span class="p">]</span>
+                <span class="p">[</span><span class="n">Add</span> <span class="n">plot</span><span class="p">]</span>
+                    <span class="p">[</span><span class="n">Plot</span><span class="p">]</span>
+                        <span class="n">选择要保存的地址与文件名</span>
+                            <span class="p">[</span><span class="n">保存</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../meachine_learning/index.html" class="btn btn-neutral float-right" title="机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="QGIS%E5%BB%BA%E6%A8%A1%E6%B5%81%E7%A8%8B.html" class="btn btn-neutral float-left" title="QGIS构建SWAT模型简述" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020， ZFJ
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
